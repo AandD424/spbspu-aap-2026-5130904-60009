@@ -49,7 +49,7 @@ namespace berezin
       {
         break;
       }
-      if (std::numeric_limits< unsigned int >::max() - (curr < prev) && (curr > next) < grt_lss_count)
+      if (std::numeric_limits< unsigned int >::max() - ((curr < prev) && (curr > next)) < grt_lss_count)
       {
         return inposible_calculations_error;
       }
