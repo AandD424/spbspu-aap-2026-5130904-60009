@@ -53,7 +53,7 @@ namespace berezin
       }
       if (!grt_lss_overflow)
       {
-        unsigned int inc = (curr < prev) && (curr > next);
+        const unsigned int inc = (curr < prev) && (curr > next);
         if (std::numeric_limits< unsigned int >::max() - inc < grt_lss_count)
         {
           grt_lss_overflow = true;
@@ -65,7 +65,7 @@ namespace berezin
       }
       if (!div_rem_overflow)
       {
-        unsigned int inc = (next % curr) == 0;
+        const unsigned int inc = (next % curr) == 0;
         if (std::numeric_limits< unsigned int >::max() - inc < div_rem_count)
         {
           div_rem_overflow = true;
