@@ -38,6 +38,8 @@ namespace berezin
 
     unsigned int grt_lss_count = 0;
     unsigned int div_rem_count = (second % first) == 0;
+    bool grt_lss_overflow = false;
+    bool div_rem_overflow = false;
 
     int prev = first;
     int curr = second;
@@ -49,16 +51,30 @@ namespace berezin
       {
         break;
       }
-      if (std::numeric_limits< unsigned int >::max() - ((curr < prev) && (curr > next)) < grt_lss_count)
+      if (!grt_lss_overflow)
       {
-        return inposible_calculations_error;
+        unsigned int inc = (curr < prev) && (curr > next);
+        if (std::numeric_limits< unsigned int >::max() - inc < grt_lss_count)
+        {
+          grt_lss_overflow = true;
+        }
+        else
+        {
+          grt_lss_count += inc;
+        }
       }
-      grt_lss_count += (curr < prev) && (curr > next);
-      if (std::numeric_limits< unsigned int >::max() - ((next % curr) == 0) < div_rem_count)
+      if (!div_rem_overflow)
       {
-        return inposible_calculations_error;
+        unsigned int inc = (next % curr) == 0;
+        if (std::numeric_limits< unsigned int >::max() - inc < div_rem_count)
+        {
+          div_rem_overflow = true;
+        }
+        else
+        {
+          div_rem_count += inc;
+        }
       }
-      div_rem_count += (next % curr) == 0;
       prev = curr;
       curr = next;
     }
@@ -76,8 +92,28 @@ namespace berezin
       return invalid_input_error;
     }
 
-    std::cout << grt_lss_count << '\n';
-    std::cout << div_rem_count << '\n';
+    if (grt_lss_overflow)
+    {
+      std::cerr << "Error: overflow in GRT-LSS count\n";
+    }
+    else
+    {
+      std::cout << grt_lss_count << '\n';
+    }
+
+    if (div_rem_overflow)
+    {
+      std::cerr << "Error: overflow in DIV-REM count\n";
+    }
+    else
+    {
+      std::cout << div_rem_count << '\n';
+    }
+
+    if (grt_lss_overflow || div_rem_overflow)
+    {
+      return inposible_calculations_error;
+    }
 
     return success;
   }
