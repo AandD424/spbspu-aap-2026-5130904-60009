@@ -49,12 +49,12 @@ namespace berezin
       {
         break;
       }
-      if (std::numeric_limits<unsigned int>::max() - (curr < prev) && (curr > next) < grt_lss_count) 
+      if (std::numeric_limits< unsigned int >::max() - (curr < prev) && (curr > next) < grt_lss_count)
       {
         return inposible_calculations_error;
       }
       grt_lss_count += (curr < prev) && (curr > next);
-      if (std::numeric_limits<unsigned int>::max() - (next % curr) == 0 < div_rem_count) 
+      if (std::numeric_limits< unsigned int >::max() - (next % curr) == 0 < div_rem_count)
       {
         return inposible_calculations_error;
       }
