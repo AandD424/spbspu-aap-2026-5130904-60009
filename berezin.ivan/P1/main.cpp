@@ -1,11 +1,12 @@
 #include <iostream>
 
-constexpr int success = 0;
-constexpr int invalid_input_error = 1;
-constexpr int inposible_calculations_error = 2;
 
 namespace berezin
 {
+
+  constexpr int success = 0;
+  constexpr int invalid_input_error = 1;
+  constexpr int inposible_calculations_error = 2;
 
   int grtLssDivRem()
   {
