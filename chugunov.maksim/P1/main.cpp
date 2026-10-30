@@ -3,18 +3,22 @@
 
 namespace chugunov {
 
-const int IN_ERR = 1;
-const int CALC_ERR = 2;
+  const int IN_ERR = 1;
+  const int CALC_ERR = 2;
 
-bool incCounter(int &counter) {
-  if (counter == std::numeric_limits<int>::max()) {
-    return false;
+  bool incCounter(int &counter)
+  {
+    if (counter == std::numeric_limits< int >::max()) {
+      return false;
+    }
+    ++counter;
+    return true;
   }
-  ++counter;
-  return true;
+
 }
-} // namespace chugunov
-int main() {
+
+int main()
+{
   int x = 0;
   int prev = 0;
   int count = 0;
@@ -75,7 +79,7 @@ int main() {
     std::cerr << "cant count divs" << std::endl;
     code = chugunov::CALC_ERR;
   } else if (div_overflow) {
-    std::cerr << "div count overflow" << std::endl;
+    std::cerr << "div count oveflow" << std::endl;
     code = chugunov::CALC_ERR;
   } else {
     std::cout << div_count << std::endl;
