@@ -13,7 +13,7 @@ namespace chugunov {
 
   bool incCounter(int &counter)
   {
-    if (counter == std::numeric_limits<int>::max()) {
+    if (counter == std::numeric_limits< int >::max()) {
       return false;
     }
     ++counter;
