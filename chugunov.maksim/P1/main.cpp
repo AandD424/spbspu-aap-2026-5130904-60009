@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 namespace chugunov {
 
@@ -8,6 +9,15 @@ namespace chugunov {
       return true;
     }
     return false;
+  }
+
+  bool incCounter(int &counter)
+  {
+    if (counter == std::numeric_limits<int>::max()) {
+      return false;
+    }
+    ++counter;
+    return true;
   }
 
 }
@@ -50,13 +60,19 @@ int main()
     }
 
     if (count > 0) {
-      if (x % prev == 0) {
-        div_count = div_count + 1;
+      if (prev == -1 || x % prev == 0) {
+        if (!chugunov::incCounter(div_count)) {
+          std::cerr << "count overflow" << std::endl;
+          return 3;
+        }
       }
     }
 
     prev = x;
-    count = count + 1;
+    if (!chugunov::incCounter(count)) {
+      std::cerr << "count overflow" << std::endl;
+      return 3;
+    }
   }
 
   char c = 0;
