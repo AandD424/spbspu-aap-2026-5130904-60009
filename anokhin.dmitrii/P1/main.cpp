@@ -1,5 +1,6 @@
 #include <iostream>
-int main() {
+int main()
+{
   int a = 0;
   int max_val = 0;
   int count_max = 0;
